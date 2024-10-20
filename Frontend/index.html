@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Engine with AST</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="header-container">
+        <h1>Welcome to Rule Engine with Abstract Syntax Tree</h1>
+        <p>Your comprehensive tool for dynamic rule creation, combination, and evaluation!</p>
+        <button onclick="window.location.href='#createRuleSection'">Get Started</button>
+    </div>
+
+
+    <div class="container">
+        <div class="form-section" id="createRuleSection">
+            <h1>Create Rule</h1>
+            <label for="ruleString">Input Rule String:</label>
+            <input type="text" id="ruleString" placeholder="e.g., (age > 30 AND income < 60000)" />
+            <button onclick="createRule()">Create Rule</button>
+
+            <div class="request-response">
+                <h3>Input</h3>
+                <h4>POST - http://localhost:8080/rules/create_rule</h4>
+                <pre id="createRuleInput"></pre>
+                <h3>Output</h3>
+                <pre id="createRuleOutput"></pre>
+            </div>
+        </div>
+
+
+        <div class="form-section">
+            <h1>Combine Rules</h1>
+            <label for="combineRuleIds">Enter Rule IDs to Combine:</label>
+            <input type="text" id="combineRuleIds" placeholder="e.g., rule1-id, rule2-id" />
+            <button onclick="combineRules()">Combine Rules</button>
+
+            <div class="request-response">
+                <h3>Input</h3>
+                <h4>POST - http://localhost:8080/rules/combine_rules</h4>
+                <pre id="combineRuleInput"></pre>
+                <h3>Output</h3>
+                <pre id="combineRuleOutput"></pre>
+            </div>
+        </div>
+
+
+        <div class="form-section">
+            <h1>Evaluate a Rule</h1>
+            <label for="ruleId">Rule ID:</label>
+            <input type="text" id="ruleId" placeholder="Enter Rule ID" />
+            <label for="ruleData">Data to Evaluate (JSON):</label>
+            <textarea id="ruleData"
+                placeholder='e.g., {"age": 35, "income": 50000, "experience": 8, "department": "Engineering"}'></textarea>
+            <button onclick="evaluateRule()">Evaluate Rule</button>
+
+            <div class="request-response">
+                <h3>Input</h3>
+                <h4>POST - http://localhost:8080/rules/{ruleId}/evaluate_rule</h4>
+                <pre id="evaluateRuleInput"></pre>
+                <h3>Output</h3>
+                <pre id="evaluateRuleOutput"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
