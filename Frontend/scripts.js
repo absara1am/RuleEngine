@@ -1,4 +1,4 @@
-const apiBaseUrl = "http://localhost:8080/rules";
+const apiBaseUrl = "https://ruleenginewithast.onrender.com";
 
 function createRule() {
   const ruleString = document.getElementById("ruleString").value;

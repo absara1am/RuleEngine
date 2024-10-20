@@ -15,7 +15,10 @@ public class CorsConfig {
       public void addCorsMappings(CorsRegistry registry) {
         registry
           .addMapping("/**")
-          .allowedOrigins("http://127.0.0.1:5500")
+          .allowedOrigins(
+            "http://127.0.0.1:5500",
+            "https://ab-ruleengine-sar.netlify.app/"
+          )
           .allowedMethods("GET", "POST", "PUT", "DELETE")
           .allowedHeaders("*")
           .allowCredentials(true);
