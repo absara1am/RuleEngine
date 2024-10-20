@@ -86,29 +86,32 @@ spring.datasource.password=<PASSWORD>
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
+```
 
 3. **Build the Project**
 
-bash
+```bash
 ./mvnw clean package
+```
 
 ## Running the Application
-Using Maven:
+- Using Maven:
 ```bash
 ./mvnw spring-boot:run
-
+```
 The application will start on http://localhost:8080.
 
-Using Docker:
+- Using Docker:
 
 1. ***Build the Docker Image***
 ```bash
 docker build -t rule-engine .
+```
 
 2. ***Run the Docker Container***
 ```bash
 docker run -d -p 8080:8080 --name rule-engine-container rule-engine
-
+```
 ## API Documentation
 
 ### Create Rule
@@ -116,11 +119,14 @@ Endpoint: POST /rules/create_rule
 Description: Creates a new rule from a rule string.
 
 Request Body:
+```bash
 {
   "ruleString": "(age > 30 AND income < 60000)"
 }
+```
 
 Response:
+```bash
 {
   "id": "UUID",
   "name": "Rule_<UUID>",
@@ -129,15 +135,22 @@ Response:
   "createdAt": "2024-10-20T12:34:56",
   "updatedAt": "2024-10-20T12:34:56"
 }
+```
 
 ### Combine Rules
 Endpoint: POST /rules/combine_rules
+
 Description: Combines multiple existing rules into a single rule.
+
 Request Body:
+```bash
 {
   "ruleIds": ["UUID1", "UUID2"]
 }
+```
+
 Response:
+```bash
 {
   "id": "UUID",
   "name": "CombinedRule_<UUID>",
@@ -146,36 +159,49 @@ Response:
   "createdAt": "2024-10-20T12:45:00",
   "updatedAt": "2024-10-20T12:45:00"
 }
+```
 
 ### Evaluate Rule
 Endpoint: POST /rules/{id}/evaluate_rule
+
 Description: Evaluates a rule against provided data.
 
-Path Parameter: id - UUID of the rule to evaluate.
+Path Parameter: ```bash id - UUID of the rule to evaluate. ```
+
 Request Body:
+```bash
 {
   "age": 35,
   "income": 50000,
   "experience": 8,
   "department": "Engineering"
 }
+```
+
 Response:
+```bash
 {
   "result": true
 }
+```
 
 ## Example Usage
+
 1. ***Create Individual Rules***
 
 - Rule 1:
+```bash
 {
   "ruleString": "((age > 30 AND department = 'Sales') OR (age < 25 AND department = 'Marketing')) AND (salary > 50000 OR experience > 5)"
 }
+```
 
 - Rule 2:
+```bash
 {
   "ruleString": "((age > 30 AND department = 'Marketing')) AND (salary > 20000 OR experience > 5)"
 }
+```
 
 2. ***Combine Rules***
 
@@ -183,18 +209,25 @@ Combine Rule 1 and Rule 2 using their UUIDs.
 
 3. ***Evaluate Combined Rule***
 
+```bash
 Enter RuleID - [combinedRuleID] or [RuleID]
+```
+
+```bash
 {
   "age": 35,
   "department": "Sales",
   "salary": 60000,
   "experience": 3
 }
+```
 
+```bash
 Response:
 {
   "result": true
 }
+```
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
@@ -202,13 +235,22 @@ Contributions are welcome! Please fork the repository and create a pull request 
 ## Fork the Project
 Create your Feature Branch
 
+```bash
 git checkout -b feature/YourFeature
+```
+
 Commit your Changes
 
+```bash
 git commit -m "Add some feature"
+```
+
 Push to the Branch
 
+```bash
 git push origin feature/YourFeature
+```
+
 Open a Pull Request
 
 ## License
