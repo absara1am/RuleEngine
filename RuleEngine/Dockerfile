@@ -6,14 +6,17 @@ WORKDIR /app
 
 # Copy the Maven project files to the working directory
 COPY pom.xml ./
-COPY src ./src
-
-# Copy the Maven wrapper if available
-COPY mvnw ./
 COPY .mvn ./.mvn
+COPY mvnw ./
 
-# Install Maven dependencies and build the application
-RUN ./mvnw install
+# Ensure the Maven wrapper has executable permissions
+RUN chmod +x ./mvnw
+
+# Download project dependencies (cached if no change in pom.xml)
+RUN ./mvnw dependency:go-offline
+
+# Copy the source code
+COPY src ./src
 
 # Package the application into a jar
 RUN ./mvnw package -DskipTests
