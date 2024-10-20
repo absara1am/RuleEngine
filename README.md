@@ -48,15 +48,14 @@ The application follows a 3-tier architecture:
 - **Backend:**
   - Java 17
   - Spring Boot 3.3.4
-  - Spring Data JPA
+- **Database:**
   - PostgreSQL
-  - Jackson for JSON processing
-  - Lombok
 - **Frontend:**
   - HTML, CSS, JavaScript
 - **Build & Deployment:**
   - Maven
   - Docker
+
 
 ## Getting Started
 
@@ -77,7 +76,7 @@ The application follows a 3-tier architecture:
    
 2. **Configure Database**
 
-Update the application.properties file with your PostgreSQL credentials:
+- Update the application.properties file with your PostgreSQL credentials:
 
 ```bash
 spring.datasource.url=jdbc:postgresql://<HOST>:<PORT>/<DATABASE>
@@ -95,37 +94,37 @@ spring.jpa.hibernate.ddl-auto=update
 ```
 
 ## Running the Application
-- Using Maven:
+1. ***Using Maven:***
 ```bash
 ./mvnw spring-boot:run
 ```
 The application will start on http://localhost:8080.
 
-- Using Docker:
+2. ***Using Docker:***
 
-1. ***Build the Docker Image***
+- Build the Docker Image
 ```bash
 docker build -t rule-engine .
 ```
 
-2. ***Run the Docker Container***
+- Run the Docker Container
 ```bash
 docker run -d -p 8080:8080 --name rule-engine-container rule-engine
 ```
 ## API Documentation
 
 ### Create Rule
-Endpoint: POST /rules/create_rule
-Description: Creates a new rule from a rule string.
+- Endpoint: POST /rules/create_rule
+- Description: Creates a new rule from a rule string.
 
-Request Body:
+- Request Body:
 ```bash
 {
   "ruleString": "(age > 30 AND income < 60000)"
 }
 ```
 
-Response:
+- Response:
 ```bash
 {
   "id": "UUID",
@@ -138,18 +137,18 @@ Response:
 ```
 
 ### Combine Rules
-Endpoint: POST /rules/combine_rules
+- Endpoint: POST /rules/combine_rules
 
-Description: Combines multiple existing rules into a single rule.
+- Description: Combines multiple existing rules into a single rule.
 
-Request Body:
+- Request Body:
 ```bash
 {
   "ruleIds": ["UUID1", "UUID2"]
 }
 ```
 
-Response:
+- Response:
 ```bash
 {
   "id": "UUID",
@@ -162,13 +161,13 @@ Response:
 ```
 
 ### Evaluate Rule
-Endpoint: POST /rules/{id}/evaluate_rule
+- Endpoint: POST /rules/{id}/evaluate_rule
 
-Description: Evaluates a rule against provided data.
+- Description: Evaluates a rule against provided data.
 
-Path Parameter: ```bash id - UUID of the rule to evaluate. ```
+- Path Parameter: ```bash id - UUID of the rule to evaluate. ```
 
-Request Body:
+- Request Body:
 ```bash
 {
   "age": 35,
@@ -178,7 +177,7 @@ Request Body:
 }
 ```
 
-Response:
+- Response:
 ```bash
 {
   "result": true
@@ -203,9 +202,11 @@ Response:
 }
 ```
 
+
 2. ***Combine Rules***
 
-Combine Rule 1 and Rule 2 using their UUIDs.
+- Combine Rule 1 and Rule 2 using their UUIDs.
+
 
 3. ***Evaluate Combined Rule***
 
@@ -231,27 +232,6 @@ Response:
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
-
-## Fork the Project
-Create your Feature Branch
-
-```bash
-git checkout -b feature/YourFeature
-```
-
-Commit your Changes
-
-```bash
-git commit -m "Add some feature"
-```
-
-Push to the Branch
-
-```bash
-git push origin feature/YourFeature
-```
-
-Open a Pull Request
 
 ## License
 This project is licensed under the MIT License.
