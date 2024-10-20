@@ -79,34 +79,34 @@ The application follows a 3-tier architecture:
 
 Update the application.properties file with your PostgreSQL credentials:
 
-properties
-Copy code
+```bash
 spring.datasource.url=jdbc:postgresql://<HOST>:<PORT>/<DATABASE>
 spring.datasource.username=<USERNAME>
 spring.datasource.password=<PASSWORD>
 spring.datasource.driver-class-name=org.postgresql.Driver
-
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
 
 3. **Build the Project**
 
 bash
-Copy code
 ./mvnw clean package
 
 ## Running the Application
-Using Maven
+Using Maven:
+```bash
 ./mvnw spring-boot:run
 
 The application will start on http://localhost:8080.
 
-Using Docker
-Build the Docker Image
+Using Docker:
 
+1. ***Build the Docker Image***
+```bash
 docker build -t rule-engine .
-Run the Docker Container
 
+2. ***Run the Docker Container***
+```bash
 docker run -d -p 8080:8080 --name rule-engine-container rule-engine
 
 ## API Documentation
