@@ -11,7 +11,7 @@ function createRule() {
     2
   );
 
-  fetch(`${apiBaseUrl}/create_rule`, {
+  fetch(`${apiBaseUrl}/rules/create_rule`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function combineRules() {
     2
   );
 
-  fetch(`${apiBaseUrl}/combine_rules`, {
+  fetch(`${apiBaseUrl}/rules/combine_rules`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -102,7 +102,7 @@ function evaluateRule() {
     2
   );
 
-  fetch(`${apiBaseUrl}/${ruleId}/evaluate_rule`, {
+  fetch(`${apiBaseUrl}/rules/${ruleId}/evaluate_rule`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
